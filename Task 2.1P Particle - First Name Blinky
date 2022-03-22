@@ -37,8 +37,8 @@ void gap() {
 
 void S(){
     dot();//dot
-	dot();//dot
-	dot();//dot
+	dot();
+	dot();
 	gap();
 }
 void O(){
@@ -48,8 +48,8 @@ void O(){
     gap();
 }
 void N(){
-    dash();//dash
-	dot();//dot
+    dash();
+	dot();
 	gap();
 }
 void G(){
