@@ -1,0 +1,30 @@
+int photoresistor = D2;
+int analogValue;
+
+int seconds_count;
+int hours_count;
+
+
+void setup() {
+    Particle.variable("analogValue",analogValue);
+    Particle.variable("photoresistor",photoresistor);
+    pinMode(photoresistor, INPUT);
+    seconds_count =0;
+    hours_count=1;
+}
+
+void loop() {
+  analogValue = analogRead(photoresistor);
+  if(analogValue < 320) {
+      Particle.publish("Sun_State", /*String(analogValue)+*/+"sunny");
+      seconds_count += 1;
+  } 
+  if(analogValue >= 320) {
+      Particle.publish("Sun_State", /*String(analogValue)+*/+"dark");
+  }
+  if(seconds_count == 3600*hours_count){
+      Particle.publish("Exposure_time", String(hours_count));
+      hours_count++;
+  }
+  delay(1000); // wait one seconds
+}
